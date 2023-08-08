@@ -2,18 +2,26 @@ import AccountProfile from "@/components/forms/AccountProfile";
 import { currentUser } from "@clerk/nextjs";
 import { idText } from "typescript";
 
+interface UserInfo {
+    _id?: string;
+    username?: string;
+    name?: string;
+    bio?: string;
+    image?: string;
+}
+
 async function Page() {
     const user = await currentUser();
 
     const userInfo = {};
 
     const userData = {
-        id: user?.id,
-        objectId: (userInfo as any)?._id,
-        username: (userInfo as any)?.username || user?.username,
+        id: user?.id || "",
+        objectId: (userInfo as any)?._id || "",
+        username: (userInfo as any)?.username || user?.username || "",
         name: (userInfo as any)?.name || user?.firstName || "",
         bio: (userInfo as any)?.bio || "",
-        image: (userInfo as any)?.image || user?.imageUrl,
+        image: (userInfo as any)?.image || user?.imageUrl || "",
     };
 
 

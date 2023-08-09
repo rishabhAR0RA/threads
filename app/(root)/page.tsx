@@ -1,7 +1,8 @@
+import ThreadCard from "@/components/cards/ThreadCard";
 import { fetchPosts } from "@/lib/actions/thread.action";
 import { currentUser } from "@clerk/nextjs";
 
-export default async function Home() {
+async function Home() {
   const result = await fetchPosts(1, 30);
   const user = await currentUser();
 
@@ -19,9 +20,10 @@ export default async function Home() {
               <ThreadCard
                 key={post._id}
                 id={post._id}
-                currentUserId={user?.id}
+                currentUserId={user?.id || ""}
                 parentId={post.parentId}
-                content={post.author}
+                content={post.text}
+                author={post.author}
                 community={post.community}
                 createdAt={post.createdAt}
                 comments={post.children}
@@ -31,5 +33,7 @@ export default async function Home() {
         )}
       </section>
     </>
-  )
+  );
 }
+
+export default Home;

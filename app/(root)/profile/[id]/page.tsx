@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { fetchUser } from "@/lib/actions/user.actions";
 import PostThread from "@/components/forms/PostThread";
 import ProfileHeader from "@/components/shared/ProfileHeader";
-// import { Tabs, TabsList, TabsContent, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsContent, TabsTrigger } from "@/components/ui/tabs";
 import { profile } from "console";
 import { profileTabs } from "@/constants";
 import Image from "next/image";
@@ -28,10 +28,10 @@ async function Page({ params }: { params: { id: string } }) {
             />
 
             <div className="mt-9">
-                {/* <Tabs defaultValue="threads" className="w-full">
+                <Tabs defaultValue="threads" className="w-full">
                     <TabsList className="tab">
                         {profileTabs.map((tab) => (
-                            <TabsTrigger key={tab.label} value={tab.value}>
+                            <TabsTrigger key={tab.label} value={tab.value} className="tab">
                                 <Image
                                     src={tab.icon}
                                     alt={tab.label}
@@ -43,7 +43,7 @@ async function Page({ params }: { params: { id: string } }) {
                             </TabsTrigger>
                         ))}
                     </TabsList>
-                </Tabs> */}
+                </Tabs>
             </div>
         </section>
     )
